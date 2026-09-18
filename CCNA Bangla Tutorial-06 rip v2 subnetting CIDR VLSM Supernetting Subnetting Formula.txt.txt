@@ -1,0 +1,178 @@
+CCNA Bangla Tutorial-06 rip v2 subnetting CIDR VLSM Supernetting Subnetting Formula 
+
+
+
+
+================> Office <========================
+
+Router>enable
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#hostname Office
+Office(config)#interface
+% Incomplete command.
+Office(config)#interface serial 0/0/0
+Office(config-if)#ip address 192.168.1.113 255.255.255.252
+Office(config-if)#no shutdown
+
+%LINK-5-CHANGED: Interface Serial0/0/0, changed state to down
+Office(config-if)#exit
+Office(config)#interface gig0/0
+Office(config-if)#ip address 192.168.1.1 255.255.255.192
+Office(config-if)#no shutdown
+
+Office(config-if)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+
+
+Office#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Office(config)#route rip
+Office(config-router)#version 2
+Office(config-router)#network 192.168.1.0
+Office(config-router)#network 192.168.1.112
+Office(config-router)#
+Office#
+%SYS-5-CONFIG_I: Configured from console by console
+
+
+================> High JOJ <========================
+
+
+Router>enable
+Router#cont t
+            ^
+% Invalid input detected at '^' marker.
+	
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#hostname High-JOJ
+High-JOJ(config)#interface gig0/0
+High-JOJ(config-if)#ip address 192.168.1.65 255.255.255.224
+High-JOJ(config-if)#no shutdown
+
+High-JOJ(config-if)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+
+High-JOJ(config-if)#exit
+High-JOJ(config)#interface se0/0/0
+High-JOJ(config-if)#ip address 192.168.1.118 255.255.255.252
+High-JOJ(config-if)#no shutdown
+
+%LINK-5-CHANGED: Interface Serial0/0/0, changed state to down
+High-JOJ(config-if)#
+
+
+
+High-JOJ#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+High-JOJ(config)#route rip
+High-JOJ(config-router)#version 2
+High-JOJ(config-router)#network 192.168.1.64
+High-JOJ(config-router)#network 192.168.1.116
+High-JOJ(config-router)#
+
+
+
+
+================> Police Office <========================
+
+
+
+Router>enable
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#hostname Police-Office
+Police-Office(config)#inteface gig0/0
+                          ^
+% Invalid input detected at '^' marker.
+	
+Police-Office(config)#interface gig0/0
+Police-Office(config-if)#ip add 192.168.1.97 255.255.255.240
+Police-Office(config-if)#no shutdown
+
+Police-Office(config-if)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+
+Police-Office(config-if)#exit
+Police-Office(config)#interface se0/0/0
+Police-Office(config-if)#ip add 192.168.1.122 255.255.255.252
+Police-Office(config-if)#no shutdown
+
+%LINK-5-CHANGED: Interface Serial0/0/0, changed state to down
+Police-Office(config-if)#
+
+
+
+Police-Office(config)#route rip
+Police-Office(config-router)#version 2
+Police-Office(config-router)#network 192.168.1.96
+Police-Office(config-router)#network 192.168.1.120
+Police-Office(config-router)#
+
+
+
+
+
+
+================> Adalot<========================
+
+
+
+Router>enable
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#hostname Adalot
+Adalot(config)#interface se0/0/0
+Adalot(config-if)#ip address 192.168.1.114 255.255.255.252
+Adalot(config-if)#no shutdown
+
+Adalot(config-if)#
+%LINK-5-CHANGED: Interface Serial0/0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Serial0/0/0, changed state to up
+
+Adalot(config-if)#exit
+Adalot(config)#interface se0/0/1
+Adalot(config-if)#ip address 192.168.1.117 255.255.255.252
+Adalot(config-if)#no shutdown
+
+Adalot(config-if)#
+%LINK-5-CHANGED: Interface Serial0/0/1, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Serial0/0/1, changed state to up
+
+Adalot(config-if)#exit
+Adalot(config)#interface se0/1/0
+Adalot(config-if)#ip address 192.168.1.121 255.255.255.252
+Adalot(config-if)#no shutdown
+
+Adalot(config-if)#
+%LINK-5-CHANGED: Interface Serial0/1/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Serial0/1/0, changed state to up
+
+
+
+Adalot(config)#route rip
+Adalot(config-router)#version 2
+Adalot(config-router)#netowrk 192.168.1.112
+                         ^
+% Invalid input detected at '^' marker.
+	
+Adalot(config-router)#network 192.168.1.112
+Adalot(config-router)#network 192.168.1.116
+Adalot(config-router)#network 192.168.1.120
+Adalot(config-router)#
+
+
+
+
+
+===================================================================

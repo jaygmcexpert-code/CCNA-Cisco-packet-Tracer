@@ -1,0 +1,187 @@
+CCNA Bangla Tutorial-02 Number system basic router configuration cisco packet tracer FME
+
+
+Router 1 Configure
+
+Would you like to enter the initial configuration dialog? [yes/no]: no
+
+
+Press RETURN to get started!
+
+
+
+Router>enable                                                
+Router#show running-config
+Building configuration...
+
+hostname Router
+
+
+Router#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#hostname Gray-Shadow
+Gray-Shadow(config)#
+
+Router#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#hostname Gray-Shadow
+Gray-Shadow(config)#line con 0
+Gray-Shadow(config-line)#password 128
+Gray-Shadow(config-line)#login
+Gray-Shadow(config-line)#enable password 64
+Gray-Shadow(config)#enable secret 32
+Gray-Shadow(config)#exit
+Gray-Shadow#
+%SYS-5-CONFIG_I: Configured from console by console
+
+User Access Verification
+
+Password: 
+Password: 
+Password: 
+
+Gray-Shadow>enable
+Password: 
+Password: 
+Gray-Shadow#show running-config
+Building configuration...
+
+Current configuration : 702 bytes
+!
+version 15.1
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname Gray-Shadow
+!
+!
+!
+enable secret 5 $1$mERr$E095RmF1M2jXgtz5do3gA1
+enable password 64
+!
+!
+!
+!
+!
+!
+
+line con 0
+ password 128
+ login
+
+
+Gray-Shadow#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Gray-Shadow(config)#service password-encryption
+Gray-Shadow(config)#exit
+Gray-Shadow#
+%SYS-5-CONFIG_I: Configured from console by console
+
+Gray-Shadow#exit
+
+
+
+
+
+
+
+
+
+Gray-Shadow con0 is now available
+
+
+
+
+
+
+Press RETURN to get started.
+
+
+
+
+
+
+
+
+
+
+
+
+
+User Access Verification
+
+Password: 
+
+Gray-Shadow>32
+% 32 is not an open connection
+Gray-Shadow>enable
+Password: 
+Gray-Shadow#show running-config
+Building configuration...
+
+Current configuration : 712 bytes
+!
+version 15.1
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+service password-encryption
+!
+hostname Gray-Shadow
+!
+!
+!
+enable secret 5 $1$mERr$E095RmF1M2jXgtz5do3gA1
+enable password 7 087718
+!
+!
+!
+!
+!
+!
+ip cef
+
+
+Gray-Shadow#show startup-config
+startup-config is not present
+Gray-Shadow#copy running-config startup-config
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+Gray-Shadow#write memory
+Building configuration...
+[OK]
+Gray-Shadow#
+
+
+================= Shadow =========================
+
+
+Router>enable
+Router#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#hostname Shadow
+Shadow(config)#exit
+Shadow#
+%SYS-5-CONFIG_I: Configured from console by console
+
+Shadow#show running-config
+Building configuration...
+
+Current configuration : 940 bytes
+!
+version 15.4
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+
+
+
+Shadow#copy running-config startup-config
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+Shadow#write memory
+Building configuration...
+[OK]
+Shadow#

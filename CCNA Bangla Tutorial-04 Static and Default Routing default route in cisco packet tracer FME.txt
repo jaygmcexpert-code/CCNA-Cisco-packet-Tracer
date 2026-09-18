@@ -1,0 +1,304 @@
+CCNA Bangla Tutorial-04 Static and Default Routing default route in cisco packet tracer FME
+
+
+==============================> Hacker 1 <==================================
+
+Router>enable
+Router#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#hostname Hacker-1
+Hacker-1(config)#interface gigabitethernet 0/0
+Hacker-1(config-if)#ip address 192.168.1.1 255.255.255.0
+Hacker-1(config-if)#no shutdown
+
+Hacker-1(config-if)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+
+Hacker-1(config-if)#interface serial 0/0/0
+Hacker-1(config-if)#ip address 193.168.1.1 255.255.255.0
+Hacker-1(config-if)#no shutdown
+
+%LINK-5-CHANGED: Interface Serial0/0/0, changed state to down
+Hacker-1(config-if)#
+
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Serial0/0/0, changed state to up
+
+Hacker-1(config-if)#interface serial 0/0/1
+Hacker-1(config-if)#ip address 199.168.1.1 255.255.255.0
+Hacker-1(config-if)#no shutdown
+
+Hacker-1(config-if)#
+%LINK-5-CHANGED: Interface Serial0/0/1, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Serial0/0/1, changed state to up
+
+Hacker-1(config-if)#exit
+Hacker-1(config)#exit
+Hacker-1#
+%SYS-5-CONFIG_I: Configured from console by console
+
+Hacker-1#show ip route
+Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+  
+
+Hacker-1#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Hacker-1(config)#ip route 194.168.1.0 255.255.255.0 193.168.1.2
+Hacker-1(config)#ip route 195.168.1.0 255.255.255.0 193.168.1.2
+Hacker-1(config)#ip route 196.168.1.0 255.255.255.0 193.168.1.2
+Hacker-1(config)#ip route 197.168.1.0 255.255.255.0 199.168.1.2
+Hacker-1(config)#ip route 198.168.1.0 255.255.255.0 199.168.1.2
+Hacker-1(config)#
+
+
+==========================================================================
+
+==============================> Hacker 2 <==================================
+
+Router>enable
+Router#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#hostname Hacker-2
+Hacker-2(config)#interface gigabitethernet 0/0
+Hacker-2(config-if)#ip address 194.168.1.1 255.255.255.0
+Hacker-2(config-if)#no shutdown
+
+Hacker-2(config-if)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+
+Hacker-2(config-if)#interface serial 0/0/0
+Hacker-2(config-if)#ip address 193.168.1.2 255.255.255.0
+Hacker-2(config-if)#no shutdown
+
+Hacker-2(config-if)#
+%LINK-5-CHANGED: Interface Serial0/0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Serial0/0/0, changed state to up
+
+
+Hacker-2(config-if)#interface serial 0/0/1
+Hacker-2(config-if)#ip address 195.168.1.1 255.255.255.0
+Hacker-2(config-if)#no shutdown
+
+%LINK-5-CHANGED: Interface Serial0/0/1, changed state to down
+Hacker-2(config-if)#
+%LINK-5-CHANGED: Interface Serial0/0/1, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Serial0/0/1, changed state to up
+
+
+Hacker-2(config-if)#exit
+Hacker-2(config)#exi
+Hacker-2#
+%SYS-5-CONFIG_I: Configured from console by console
+
+Hacker-2#show ip route
+Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+
+
+Hacker-2#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Hacker-2(config)#ip route 192.168.1.0 255.255.255.0 193.168.1.1
+Hacker-2(config)#ip route 196.168.1.0 255.255.255.0 193.168.1.1
+Hacker-2(config)#ip route 197.168.1.0 255.255.255.0 195.168.1.2
+Hacker-2(config)#ip route 198.168.1.0 255.255.255.0 195.168.1.2
+Hacker-2(config)#ip route 199.168.1.0 255.255.255.0 195.168.1.2
+Hacker-2(config)#
+
+
+Hacker-2>enable
+Hacker-2#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Hacker-2(config)#interface gigabitethernet 0/1
+Hacker-2(config-if)#ip address 201.168.1.2 255.255.255.0
+Hacker-2(config-if)#no shutdown
+
+Hacker-2(config-if)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/1, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to up
+
+
+
+==========================================================================
+
+==============================> Hacker 3 <==================================
+
+Router>enable
+Router#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#hostname Hacker-3
+Hacker-3(config)#interface gigabitethernet 0/0
+Hacker-3(config-if)#ip address 196.168.1.1 255.255.255.0
+Hacker-3(config-if)#no shutdown
+
+Hacker-3(config-if)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+
+Hacker-3(config-if)#interface serial 0/0/0
+Hacker-3(config-if)#ip address 195.168.1.1 255.255.255.0
+Hacker-3(config-if)#no shutdown
+
+Hacker-3(config-if)#
+%LINK-5-CHANGED: Interface Serial0/0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Serial0/0/0, changed state to up
+
+Hacker-3(config-if)#
+Hacker-3(config-if)#interface serial 0/0/1
+Hacker-3(config-if)#ip address 197.168.1.1 255.255.255.0
+Hacker-3(config-if)#no shutdown
+
+%LINK-5-CHANGED: Interface Serial0/0/1, changed state to down
+Hacker-3(config-if)#
+%LINK-5-CHANGED: Interface Serial0/0/1, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Serial0/0/1, changed state to up
+
+Hacker-3(config-if)#exit
+Hacker-3(config)#exit
+Hacker-3#
+%SYS-5-CONFIG_I: Configured from console by console
+
+Hacker-3#show ip route
+
+Hacker-3#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Hacker-3(config)#ip route 192.168.1.0 255.255.255.0 195.168.1.2
+Hacker-3(config)#ip route 193.168.1.0 255.255.255.0 195.168.1.2
+Hacker-3(config)#ip route 194.168.1.0 255.255.255.0 195.168.1.2
+Hacker-3(config)#ip route 198.168.1.0 255.255.255.0 197.168.1.2
+Hacker-3(config)#ip route 199.168.1.0 255.255.255.0 197.168.1.2
+Hacker-3(config)#
+
+==========================================================================
+
+==============================> Hacker 4 <==================================
+
+Router>enable
+Router#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#hostname Hacker-4
+Hacker-4(config)#interface gigbitethernet 0/0
+                              ^
+% Invalid input detected at '^' marker.
+	
+Hacker-4(config)#interface gigabitethernet 0/0
+Hacker-4(config-if)#ip address 198.168.1.1 255.255.255.0
+Hacker-4(config-if)#no shutdown
+
+Hacker-4(config-if)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+
+Hacker-4(config-if)#interface serial 0/0/0
+Hacker-4(config-if)#ip address 197.168.1.2 255.255.255.0
+Hacker-4(config-if)#no shutdown
+
+Hacker-4(config-if)#
+%LINK-5-CHANGED: Interface Serial0/0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Serial0/0/0, changed state to up
+
+Hacker-4(config-if)#interface serial 0/0/1
+Hacker-4(config-if)#ip address 199.168.1.2 255.255.255.0
+Hacker-4(config-if)#no shutdown
+
+%LINK-5-CHANGED: Interface Serial0/0/1, changed state to down
+Hacker-4(config-if)#
+%LINK-5-CHANGED: Interface Serial0/0/1, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Serial0/0/1, changed state to up
+
+
+Hacker-4(config-if)#exit
+Hacker-4(config)#exit
+Hacker-4#
+%SYS-5-CONFIG_I: Configured from console by console
+
+Hacker-4#show ip route
+
+Hacker-4#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Hacker-4(config)#ip route 192.168.1.0 255.255.255.0 199.168.1.1
+Hacker-4(config)#ip route 193.168.1.0 255.255.255.0 199.168.1.1
+Hacker-4(config)#ip route 194.168.1.0 255.255.255.0 199.168.1.1
+Hacker-4(config)#ip route 195.168.1.0 255.255.255.0 197.168.1.1
+Hacker-4(config)#ip route 196.168.1.0 255.255.255.0 197.168.1.1
+Hacker-4(config)#
+
+==========================================================================
+
+
+===========================> Hacker-5 <=======================================
+
+Router>enable
+Router#show ip route
+Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2, E - EGP
+       i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2, ia - IS-IS inter area
+       * - candidate default, U - per-user static route, o - ODR
+       P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#interface gigabitethernet 0/0
+Router(config-if)#ip address 201.168.1.1 255.255.255.0
+Router(config-if)#no shutdown
+
+Router(config-if)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to up
+
+Router(config-if)#no ip address 201.168.1.1 255.255.255.0
+Router(config-if)#exit
+Router(config)#interface gigabitethernet 0/1
+Router(config-if)#ip address 201.168.1.1 255.255.255.0
+Router(config-if)#no shutdown
+
+Router(config-if)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/1, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to up
+
+Router(config-if)#exit
+Router(config)#interface gigabitethernet 0/0
+Router(config-if)#ip address 200.168.1.1 255.255.255.0
+Router(config-if)#no shutdown
+Router(config-if)#
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+
+Router(config-if)#exit
+Router(config)#hostname Hacker-5
+Hacker-5(config)#
+
+
+
+
+
+
+
+
+
+
+
+no ip route 192.168.1.0 255.255.255.0 200.168.1.2 
+no ip route 193.168.1.0 255.255.255.0 200.168.1.2 
+no ip route 194.168.1.0 255.255.255.0 200.168.1.2 
+no ip route 195.168.1.0 255.255.255.0 200.168.1.2 
+no ip route 196.168.1.0 255.255.255.0 200.168.1.2 
+no ip route 197.168.1.0 255.255.255.0 200.168.1.2 
+no ip route 198.168.1.0 255.255.255.0 200.168.1.2 
+no ip route 199.168.1.0 255.255.255.0 200.168.1.2 
