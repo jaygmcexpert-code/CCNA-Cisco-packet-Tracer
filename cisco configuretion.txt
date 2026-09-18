@@ -1,0 +1,50 @@
+Router>  				User Execution Mode
+
+
+Router>enable
+Router#				Privillage Execution Mode
+
+
+Router#show running-config		Content from RAM
+
+Router#Show startup-config		Content From NVRAM
+
+Router#show flash:			Content from Flash
+
+Router#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#		
+				Global Configuration Mode
+
+
+Router(config)#hostname Gr4y-Sh4d0w
+Gr4y-Sh4d0w(config)#		hostname (Name) Command
+
+
+
+
+Router(config)#hostname Gr4y-Sh4d0w
+Gr4y-Sh4d0w(config)#		Sub Configuration mode
+
+
+
+Gr4y-Sh4d0w#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Gr4y-Sh4d0w(config)#line con 0
+Gr4y-Sh4d0w(config-line)#password 128
+Gr4y-Sh4d0w(config-line)#login
+Gr4y-Sh4d0w(config-line)#enable password 64
+Gr4y-Sh4d0w(config)#
+
+
+Gray-SHadow#show startup-config
+startup-config is not present
+Gray-SHadow#copy running-config startup-config       file save
+
+
+
+Gray-SHadow#reload                                                   ruture resast
+
+
+
+Gray-SHadow#write 

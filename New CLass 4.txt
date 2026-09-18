@@ -1,0 +1,147 @@
+============ White =================
+
+Router>enable
+Router#config
+Configuring from terminal, memory, or network [terminal]? t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#hostname White
+White(config)#interface gigabitethernet 0/0
+White(config-if)#ip address 192.168.1.1 255.255.255.0
+White(config-if)#Description To-Black LAN
+White(config-if)#no shutdown
+
+White(config-if)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+
+White(config-if)#exit
+White(config)#interface serial 0/0/0
+White(config-if)#ip address 193.168.1.1 255.255.255.0
+White(config-if)#no shutdown
+
+%LINK-5-CHANGED: Interface Serial0/0/0, changed state to down
+White(config-if)#
+
+White(config)#interface serial 0/0/1
+White(config-if)#ip address 199.168.1.1 255.255.255.0
+White(config-if)#no shutdown
+
+
+============ Black =================
+
+
+Router>enable
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#hostname Black
+Black(config)#interface gigabitethernet 0/0
+Black(config-if)#ip address 194.168.1.1 255.255.255.0
+Black(config-if)#Description To-Gray-LAN SW
+Black(config-if)#no shutdown
+
+Black(config-if)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+
+Black(config-if)#exit
+Black(config)#interface serial 0/0/0
+Black(config-if)#exit
+Black(config)#interface serial 0/0/1
+Black(config-if)#ip address 193.168.1.2 255.255.255.0
+Black(config-if)#no shutdown
+
+Black(config-if)#
+%LINK-5-CHANGED: Interface Serial0/0/1, changed state to up
+
+Black(config-if)#
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Serial0/0/1, changed state to up
+
+Black(config-if)#exit
+Black(config)#interface serial 0/0/0
+Black(config-if)#ip address 195.168.1.1 255.255.255.0
+Black(config-if)#no shutdown
+
+%LINK-5-CHANGED: Interface Serial0/0/0, changed state to down
+Black(config-if)#
+Black(config-if)#do show running-config
+Building configuration...
+
+
+
+
+============ Gray =================
+
+
+Router>enable
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#hostname Gray
+Gray(config)#interface gigabitethernet 0/0
+Gray(config-if)#ip address 196.168.1.1
+% Incomplete command.
+Gray(config-if)#ip address 196.168.1.1 255.255.255.0
+Gray(config-if)#Description To-Rad LAN SW
+Gray(config-if)#no shutdown
+
+Gray(config-if)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+
+Gray(config-if)#exit
+Gray(config)#interface serial 0/0/1
+Gray(config-if)#ip address 195.168.1.2 255.255.255.0
+Gray(config-if)#no shutdown
+
+Gray(config-if)#
+%LINK-5-CHANGED: Interface Serial0/0/1, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Serial0/0/1, changed state to up
+
+Gray(config-if)#exit
+Gray(config)#interface serial 0/0/0
+Gray(config-if)#ip address 197.168.1.1 255.255.255.0
+Gray(config-if)#no shutdown
+
+
+
+
+============ Rad =================
+
+
+Router>enable
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#hostname Rad
+Rad(config)#interface gigabitethernet 0/0
+Rad(config-if)#ip address 198.168.1.1 255.255.255.0
+Rad(config-if)#no shutdown
+
+Rad(config-if)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+
+Rad(config-if)#exit
+Rad(config)#interface serial 0/0/0
+Rad(config-if)#ip address 199.168.1.2 255.255.255.0
+Rad(config-if)#no shutdown
+
+Rad(config-if)#
+%LINK-5-CHANGED: Interface Serial0/0/0, changed state to up
+
+Rad(config-if)#exit
+Rad(config)#interface serial 0/0/1
+Rad(config-if)#ip address 197.168.1.1 255.255.255.0
+Rad(config-if)#no shutdown
+
+Rad(config-if)#
+%LINK-5-CHANGED: Interface Serial0/0/1, changed state to up
+
+Rad(config-if)#
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Serial0/0/1, changed state to up
+
+
+

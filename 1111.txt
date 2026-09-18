@@ -1,0 +1,186 @@
+================== Khulna IP- 192.168.1.1 ======================
+
+Router>enable
+Router#configure t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#interface gigabitethernet 0/0
+Router(config-if)#ip address 192.168.1.1 255.255.255.0
+Router(config-if)#Description To-Dhakbangla LAN-SW
+Router(config-if)#no shutdown
+
+Router(config-if)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+
+Router(config-if)#exit
+Router(config)#interface serial 0/0/0
+Router(config-if)#ip address 193.168.1.1 255.255.255.0
+Router(config-if)#no shutdown
+
+%LINK-5-CHANGED: Interface Serial0/0/0, changed state to down
+Router(config-if)#exit
+Router(config)#interface serial 0/0/1
+Router(config-if)#ip address 199.168.1.1 255.255.255.0
+Router(config-if)#no shutdown
+
+%LINK-5-CHANGED: Interface Serial0/0/1, changed state to down
+Router(config-if)#
+
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#ip route 194.168.1.0 255.255.255.0 193.168.1.2
+Router(config)#ip route 195.168.1.0 255.255.255.0 193.168.1.2
+Router(config)#ip route 196.168.1.0 255.255.255.0 193.168.1.2
+Router(config)#ip route 197.168.1.0 255.255.255.0 199.168.1.1
+%Invalid next hop address (it's this router)
+Router(config)#ip route 197.168.1.0 255.255.255.0 199.168.1.2
+Router(config)#ip route 198.168.1.0 255.255.255.0 199.168.1.2
+Router(config)#
+
+
+================== DakBangla IP- 194.168.1.1 ======================
+
+
+Router>enable
+Router#config t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#interface gigabitethernet 0/0
+Router(config-if)#ip address 194.168.1.1 255.255.255.0
+Router(config-if)#Description To-Shib-Bari-LAN SW
+Router(config-if)#no shutdown
+
+Router(config-if)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+
+Router(config-if)#exit
+Router(config)#interface serial 0/0/0
+Router(config-if)#ip address 193.168.1.2 255.255.255.0
+Router(config-if)#no shutdown
+
+%LINK-5-CHANGED: Interface Serial0/0/0, changed state to down
+Router(config-if)#exit
+Router(config)#interface serial 0/0/1
+Router(config-if)#ip address 193.168.1.2 255.255.255.0
+% 193.168.1.0 overlaps with Serial0/0/0
+Router(config-if)#interface serial 0/0/0
+Router(config-if)#ip address 195.168.1.1 255.255.255.0
+Router(config-if)#no shutdown
+Router(config-if)#exit
+Router(config)#interface serial 0/0/1
+Router(config-if)#ip address 193.168.1.2 255.255.255.0
+Router(config-if)#no shutdown
+
+Router(config-if)#
+%LINK-5-CHANGED: Interface Serial0/0/1, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Serial0/0/1, changed state to up
+
+
+Router#conf
+Configuring from terminal, memory, or network [terminal]? t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#ip route 192.168.1.0 255.255.255.0 193.168.1.1
+Router(config)#ip route 196.168.1.0 255.255.255.0 193.168.1.2
+%Invalid next hop address (it's this router)
+Router(config)#ip route 196.168.1.0 255.255.255.0 195.168.1.1
+%Invalid next hop address (it's this router)
+Router(config)#ip route 196.168.1.0 255.255.255.0 195.168.1.2
+Router(config)#ip route 197.168.1.0 255.255.255.0 195.168.1.2
+Router(config)#ip route 198.168.1.0 255.255.255.0 199.168.1.2
+Router(config)#
+
+================== Shib Bari IP- 196.168.1.1 ======================
+
+
+Router>enable
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#interface gigabitethernet 0/0
+Router(config)#ip route 194.168.1.0 255.255.255.0 195.168.1.1
+Router(config-if)#no shutdown
+
+Router(config-if)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+
+Router(config-if)#Description To-DhakBanglaLAN-SW
+Router(config-if)#exit
+Router(config)#interface serial 0/0/1
+Router(config-if)#ip address 195.168.1.2 255.255.255.0
+Router(config-if)#no shutdown
+
+Router(config-if)#
+%LINK-5-CHANGED: Interface Serial0/0/1, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Serial0/0/1, changed state to up
+
+Router(config-if)#exit
+Router(config)#interface serial 0/0/0
+Router(config-if)#ip address 197.168.1.1 255.255.255.0
+Router(config-if)#no shutdown
+
+%LINK-5-CHANGED: Interface Serial0/0/0, changed state to down
+Router(config-if)#
+
+
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#ip route 192.168.1.0 255.255.255.0 195.168.1.1
+Router(config)#ip route 193.168.1.0 255.255.255.0 195.168.1.1
+Router(config)#ip route 196.168.1.0 255.255.255.0 195.168.1.1
+Router(config)#ip route 198.168.1.0 255.255.255.0 198.168.1.2
+Router(config)#ip route 199.168.1.0 255.255.255.0 199.168.1.2
+Router(config)#
+
+
+================== Jholil Tower IP- 198.168.1.1 ======================
+
+Router>enable
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#interface gigabitethernet 0/0
+Router(config-if)#ip address 198.168.1.1 255.255.255.0
+Router(config-if)#Description TO-Khulna-LAN-SW
+Router(config-if)#no shutdown
+
+Router(config-if)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+
+Router(config-if)#exit
+Router(config)#interface serial 0/0/1
+Router(config-if)#ip address 197.168.1.2 255.255.255.0
+Router(config-if)#Description TO-ShibBari-LAN-SW
+Router(config-if)#no shutdown
+
+Router(config-if)#
+%LINK-5-CHANGED: Interface Serial0/0/1, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Serial0/0/1, changed state to up
+
+Router(config-if)#exit
+Router(config)#interface serial 0/0/0
+Router(config-if)#ip address 199.168.1.2 255.255.255.0
+Router(config-if)#no shutdown
+
+Router(config-if)#
+%LINK-5-CHANGED: Interface Serial0/0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Serial0/0/0, changed state to up
+
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#ip route 192.168.1.0 255.255.255.0 199.168.1.1
+Router(config)#ip route 193.168.1.0 255.255.255.0 199.168.1.1
+Router(config)#ip route 194.168.1.0 255.255.255.0 194.168.1.1
+Router(config)#ip route 195.168.1.0 255.255.255.0 195.168.1.2
+Router(config)#ip route 196.168.1.0 255.255.255.0 195.168.1.2
+Router(config)#
+
+
+==============================================================
