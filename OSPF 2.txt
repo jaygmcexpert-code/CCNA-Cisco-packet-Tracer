@@ -1,0 +1,231 @@
+========================> White-Hacker <=================================
+
+Router>enable
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#hostname White-Hacker
+White-Hacker(config)#interface gig 0/0
+White-Hacker(config-if)#ip add 192.168.1.1 255.255.255.0
+White-Hacker(config-if)#no shutdown
+
+White-Hacker(config-if)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+
+White-Hacker(config-if)#exit
+White-Hacker(config)#interface se0/0/0
+White-Hacker(config-if)#ip address 193.168.1.1 255.255.255.0
+White-Hacker(config-if)#no shutdown
+
+%LINK-5-CHANGED: Interface Serial0/0/0, changed state to down
+White-Hacker(config-if)#exit
+White-Hacker(config)#router ospf 1	
+White-Hacker(config-router)#router-id 1.1.1.1
+White-Hacker(config-router)#network 192.168.1.0 0.0.0.255 Area 10
+White-Hacker(config-router)#network 193.168.1.0 0.0.0.255 Area 10
+White-Hacker(config-router)#
+
+
+========================================================================
+
+========================> Black-Hacker <=================================
+
+Router>enable
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#hostname Black-Hacker
+Black-Hacker(config)#interface gig0/0
+Black-Hacker(config-if)#ip add 193.168.1.1 255.255.255.0
+Black-Hacker(config-if)#no shutdown
+
+Black-Hacker(config-if)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+
+Black-Hacker(config-if)#exit
+Black-Hacker(config)#interface serial 0/0/0
+Black-Hacker(config-if)#ip add 193.168.1.2 255.255.255.0 
+% 193.168.1.0 overlaps with GigabitEthernet0/0
+Black-Hacker(config-if)#exit
+Black-Hacker(config)#interface gig0/0
+Black-Hacker(config-if)#no ip add 193.168.1.2 255.255.255.0 
+Black-Hacker(config-if)#ip add 194.168.1.1 255.255.255.0 
+Black-Hacker(config-if)#no shutdown
+Black-Hacker(config-if)#exit
+Black-Hacker(config)#interface serial 0/0/0
+Black-Hacker(config-if)#ip add 193.168.1.2 255.255.255.0 
+Black-Hacker(config-if)#no shutdown
+
+Black-Hacker(config-if)#
+%LINK-5-CHANGED: Interface Serial0/0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Serial0/0/0, changed state to up
+
+Black-Hacker(config-if)#exit
+Black-Hacker(config)#interface serial 0/0/01
+Black-Hacker(config-if)#ip add 195.168.1.1 255.255.255.0
+Black-Hacker(config-if)#no shutdown
+
+%LINK-5-CHANGED: Interface Serial0/0/1, changed state to down
+Black-Hacker(config-if)#exit
+Black-Hacker(config)#router ospf 2
+Black-Hacker(config-router)#router-id 2.2.2.2
+Black-Hacker(config-router)#network 193.168.1.0 0.0.0.0255 Area 20
+Black-Hacker(config-router)#network 194.168.1.0 0.0.0.0255 Area 20
+Black-Hacker(config-router)#network 195.168.1.0 0.0.0.0255 Area 20
+Black-Hacker(config-router)#
+
+
+
+========================================================================
+
+========================> Gray-Hacker <=================================
+
+Router>enable
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#hostname Gray-Hacker
+Gray-Hacker(config)#interface gig0/0
+Gray-Hacker(config-if)#ip add 196.168.1.1 255.255.255.0
+Gray-Hacker(config-if)#no shutdown
+
+Gray-Hacker(config-if)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+
+Gray-Hacker(config-if)#exit
+Gray-Hacker(config)#interface serial 0/0/1
+Gray-Hacker(config-if)#ip add 195.168.1.2 255.255.255.0
+Gray-Hacker(config-if)#no shutdown
+
+%LINK-5-CHANGED: Interface Serial0/0/1, changed state to down
+Gray-Hacker(config-if)#no ip add 195.168.1.2 255.255.255.0
+Gray-Hacker(config-if)#exit
+Gray-Hacker(config)#
+Gray-Hacker(config)#interface serial 0/0/0
+Gray-Hacker(config-if)#ip add 195.168.1.2 255.255.255.0
+Gray-Hacker(config-if)#no shutdown
+
+Gray-Hacker(config-if)#
+%LINK-5-CHANGED: Interface Serial0/0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Serial0/0/0, changed state to up
+
+Gray-Hacker(config-if)#exit
+Gray-Hacker(config)#interface serial 0/0/1
+Gray-Hacker(config-if)#ip add 197.168.1.1 255.255.255.0
+Gray-Hacker(config-if)#no shutdown
+Gray-Hacker(config-if)#exit
+Gray-Hacker(config)#router ospf 3
+Gray-Hacker(config-router)#router-id 3.3.3.3
+Gray-Hacker(config-router)#network 195.168.1.0 0.0.0.255 Area 30
+Gray-Hacker(config-router)#network 196.168.1.0 0.0.0.255 Area 30
+Gray-Hacker(config-router)#network 197.168.1.0 0.0.0.255 Area 30
+Gray-Hacker(config-router)#
+
+%LINK-5-CHANGED: Interface Serial0/0/1, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Serial0/0/1, changed state to up
+
+
+========================================================================
+
+========================> Red-Hacker <=================================
+
+Router>enable
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#interface serial 0/0/0
+Router(config-if)#ip add 197.168.1.2 255.255.255.0
+Router(config-if)#no shutdown
+
+Router(config-if)#
+%LINK-5-CHANGED: Interface Serial0/0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Serial0/0/0, changed state to up
+
+Router(config-if)#exit
+Router(config)#interface gig0/0
+Router(config-if)#ip add 198.168.1.1 255.255.255.0
+Router(config-if)#no shutdown
+
+Router(config-if)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+
+Router(config-if)#exit
+Router(config)#hostname Red-Hacker
+Red-Hacker(config)#interface serial 0/0/1
+Red-Hacker(config-if)#ip add 199.168.1.1 255.255.255.0
+Red-Hacker(config-if)#no shutdown
+
+%LINK-5-CHANGED: Interface Serial0/0/1, changed state to down
+Red-Hacker(config-if)#exit
+Red-Hacker(config)#router ospf 4
+Red-Hacker(config-router)#router-id 4.4.4.4
+Red-Hacker(config-router)#network 197.168.1.0 0.0.0.255 Area 40
+Red-Hacker(config-router)#network 198.168.1.0 0.0.0.255 Area 40
+Red-Hacker(config-router)#network 199.168.1.0 0.0.0.255 Area 40
+Red-Hacker(config-router)#
+
+
+
+
+========================================================================
+
+========================> Blue-Hacker <=================================
+
+Router>enable
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#hostname Blue-Hacker
+Blue-Hacker(config)#interface gig0/0
+Blue-Hacker(config-if)#ip address 200.168.1.1 255.255.255.0
+Blue-Hacker(config-if)#no shutdown
+
+Blue-Hacker(config-if)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+
+Blue-Hacker(config-if)#exit
+Blue-Hacker(config)#interface serial 0/0/0
+Blue-Hacker(config-if)#ip add 199.168.1.2 255.255.255.0
+Blue-Hacker(config-if)#no shutdown
+
+Blue-Hacker(config-if)#
+%LINK-5-CHANGED: Interface Serial0/0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Serial0/0/0, changed state to up
+
+Blue-Hacker(config-if)#exit
+Blue-Hacker(config)#router osfp 5
+                             ^
+% Invalid input detected at '^' marker.
+	
+Blue-Hacker(config)#router ospf 5
+Blue-Hacker(config-router)#router-id 5.5.5.5
+Blue-Hacker(config-router)#network 199.168.1.0 0.0.0.255 Area 50
+Blue-Hacker(config-router)#network 200.168.1.0 0.0.0.255 Area 50
+Blue-Hacker(config-router)#
+
+
+
+
+
+========================================================================
+
+========================> Green-Hacker <=================================
+
+
+
+
+
+
+
+
+========================================================================

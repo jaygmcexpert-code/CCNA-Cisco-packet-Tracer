@@ -1,0 +1,399 @@
+==================== Caina ==================================
+
+Router>enable
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#hostname Caina
+Caina(config)#interface serial 0/0/0
+Caina(config-if)#ip add 193.168.1.1 255.255.255.0
+Caina(config-if)#no shutdown
+
+%LINK-5-CHANGED: Interface Serial0/0/0, changed state to down
+Caina(config-if)#exit
+Caina(config)#route rip	
+Caina(config-router)#network 192.168.1.0
+Caina(config-router)#network 193.168.1.0
+Caina(config-router)#exit
+Caina(config)#interface serial 0/0/1
+Caina(config-if)#ip add 203.168.1.2 255.255.255.0
+Caina(config-if)#no shutdown
+
+%LINK-5-CHANGED: Interface Serial0/0/1, changed state to down
+Caina(config-if)#exit
+Caina(config)#route rip
+Caina(config-router)#network 203.168.1.0
+Caina(config-router)#
+
+
+Caina#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Caina(config)#interface loopback 10
+
+Caina(config-if)#
+%LINK-5-CHANGED: Interface Loopback10, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Loopback10, changed state to up
+
+Caina(config-if)#ip add 10.0.0.1 255.255.255.255
+Caina(config-if)#^Z
+Caina#
+%SYS-5-CONFIG_I: Configured from console by console
+
+Caina#
+Caina#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Caina(config)#router ospf 10
+Caina(config-router)#router-id 1.1.1.1 
+Caina(config-router)#network 10.0.0.0 0.0.0.255 Area 10
+Caina(config-router)#network 192.168.1.0 0.0.0.255 Area 10
+Caina(config-router)#network 193.168.1.0 0.0.0.255 Area 10
+Caina(config-router)#network 203.168.1.0 0.0.0.255 Area 10
+Caina(config-router)#
+Caina(config-router)#
+00:40:14: %OSPF-5-ADJCHG: Process 10, Nbr 2.2.2.2 on Serial0/0/0 from LOADING to FULL, Loading Done
+
+Route RIP remove
+________________
+
+Caina#
+Caina#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Caina(config)#no route rip
+Caina(config)#exit
+Caina#
+%SYS-5-CONFIG_I: Configured from console by console
+
+==================== Germany ==================================
+
+Router>enable
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#hostname Germany
+Germany(config)#interface gig0/0
+Germany(config-if)#ip add 194.168.1.1 255.255.255.0
+Germany(config-if)#exit
+Germany(config)#interface se0/0/0
+Germany(config-if)#ip add 193.168.1.2 255.255.255.0
+Germany(config-if)#no shutdown
+
+Germany(config-if)#
+%LINK-5-CHANGED: Interface Serial0/0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Serial0/0/0, changed state to up
+
+Germany(config-if)#exit
+Germany(config)#interface se0/0/1
+Germany(config-if)#ip add 195.168.1.1 255.255.255.0
+Germany(config-if)#e
+% Ambiguous command: "e"
+Germany(config-if)#no shutdown
+
+%LINK-5-CHANGED: Interface Serial0/0/1, changed state to down
+Germany(config-if)#exit
+Germany(config)#route rip
+Germany(config-router)#network 193.168.1.0
+Germany(config-router)#network 194.168.1.0
+Germany(config-router)#network 195.168.1.0
+Germany(config-router)#
+
+
+Germany#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Germany(config)#router ospf 20
+Germany(config-router)#router-id 2.2.2.2 
+Germany(config-router)#network 193.168.1.0 0.0.0.255 Area 10
+Germany(config-router)#network 194.168.1.0 0.0.0.255 Area 10
+Germany(config-router)#network 194.168.1.0 0.0.0.255 Area 10
+00:40:14: %OSPF-5-ADJCHG: Process 20, Nbr 1.1.1.1 on Serial0/0/0 from LOADING to FULL, Loading Done
+
+Germany(config-router)#network 195.168.1.0 0.0.0.255 Area 10
+Germany(config-router)#
+
+Route RIP remove
+________________
+
+Germany#
+Germany#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Germany(config)#no route rip
+Germany(config)#
+
+Germany>enable
+Germany#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Germany(config)#interface loopback 20
+
+Germany(config-if)#
+%LINK-5-CHANGED: Interface Loopback20, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Loopback20, changed state to up
+
+Germany(config-if)#ip add 20.0.0.0 255.255.255.255
+Germany(config-if)#
+
+
+==================== USA ==================================
+
+Router>enable
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#hostname USA
+USA(config)#interface serial 0/0/0
+USA(config-if)#ip add 195.168.1.2 255.255.255.0
+USA(config-if)#no shutdown
+
+USA(config-if)#
+%LINK-5-CHANGED: Interface Serial0/0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Serial0/0/0, changed state to up
+
+USA(config-if)#exit
+USA(config)#interface serial 0/0/1
+USA(config-if)#ip add 197.168.1.1 255.255.255.0
+USA(config-if)#no shutdown
+
+%LINK-5-CHANGED: Interface Serial0/0/1, changed state to down
+USA(config-if)#exit
+USA(config)#route rip
+USA(config-router)#network 195.168.1.0
+USA(config-router)#network 196.168.1.0
+USA(config-router)#network 197.168.1.0
+USA(config-router)#
+
+USA#
+USA#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+USA(config)#router ospf 30
+USA(config-router)#router-id 3.3.3.3
+USA(config-router)#network 195.168.1.0 0.0.0.255 Area 10
+USA(config-router)#network 196.168.1.0 0.0.0.255 Area 10
+USA(config-router)#network 196.168.1.0 0.0.0.255 Area 10
+00:44:31: %OSPF-5-ADJCHG: Process 30, Nbr 2.2.2.2 on Serial0/0/0 from LOADING to FULL, Loading Done
+
+USA(config-router)#network 197.168.1.0 0.0.0.255 Area 10
+USA(config-router)#
+
+Route RIP remove
+________________
+USA#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+USA(config)#no route rip
+USA(config)#
+
+USA>enable
+USA#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+USA(config)#interface loopback 30
+
+USA(config-if)#
+%LINK-5-CHANGED: Interface Loopback30, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Loopback30, changed state to up
+
+USA(config-if)#ip add 30.0.0.0 255.255.255.255
+USA(config-if)#
+
+
+
+==================== UK ==================================
+
+
+Router>enable
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#hostname UK
+UK(config)#interface serial 0/0/0
+UK(config-if)#ip add 197.168.1.2 255.255.255.0
+UK(config-if)#no shutdown
+
+UK(config-if)#
+%LINK-5-CHANGED: Interface Serial0/0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Serial0/0/0, changed state to up
+
+	
+UK(config-if)#exit
+UK(config)#interface serial 0/0/1
+UK(config-if)#ip add 199.168.1.1 255.255.255.0	
+UK(config-if)#no shutdown
+
+%LINK-5-CHANGED: Interface Serial0/0/1, changed state to down
+UK(config-if)#exit
+UK(config)#route rip
+UK(config-router)#network 197.168.1.0 
+UK(config-router)#network 198.168.1.0 
+UK(config-router)#network 199.168.1.0 
+UK(config-router)#
+
+
+UK#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+UK(config)#router ospf 40
+UK(config-router)#no router-id 4.4.4.4
+UK(config-router)#router-id 4.4.4.4
+UK(config-router)#network 197.168.1.0 0.0.0.255 Area 10
+UK(config-router)#network 198.168.1.0 0.0.0.255 Area 10
+UK(config-router)#network 199.168.1.0 0.0.0.255 Area 10
+UK(config-router)#
+00:48:28: %OSPF-5-ADJCHG: Process 40, Nbr 3.3.3.3 on Serial0/0/0 from LOADING to FULL, Loading Done
+
+Route RIP remove
+________________
+UK#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+UK(config)#no route rip
+UK(config)#
+
+
+
+
+UK>enable
+UK#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+UK(config)#interface loopback 40
+
+UK(config-if)#
+%LINK-5-CHANGED: Interface Loopback40, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Loopback40, changed state to up
+
+UK(config-if)#ip add 40.0.0.0 255.255.255.255
+UK(config-if)#
+
+==================== Australia ==================================
+
+Router>enable
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#hostname Australia
+Australia(config)#interface serial 0/0/0
+Australia(config-if)#ip add 199.168.1.2 255.255.255.0
+Australia(config-if)#no shutdown
+
+Australia(config-if)#
+%LINK-5-CHANGED: Interface Serial0/0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Serial0/0/0, changed state to up
+
+Australia(config-if)#exit
+Australia(config)#interface serial 0/0/1
+Australia(config-if)#ip add 201.168.1.1 255.255.255.0
+Australia(config-if)#no shutdown
+
+%LINK-5-CHANGED: Interface Serial0/0/1, changed state to down	
+Australia(config-if)#exit
+Australia(config)#route rip
+Australia(config-router)#network 199.168.1.0
+Australia(config-router)#network 200.168.1.0
+Australia(config-router)#network 201.168.1.0
+Australia(config-router)#
+
+Australia#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Australia(config)#router ospf 50
+Australia(config-router)#router-id 5.5.5.5
+Australia(config-router)#network 199.168.1.0 0.0.0.255 Area 10
+Australia(config-router)#network 199.168.1.0 0.0.0.255 Area 10
+00:52:38: %OSPF-5-ADJCHG: Process 50, Nbr 4.4.4.4 on Serial0/0/router ospf 50
+Australia(config-router)#network 200.168.1.0 0.0.0.255 Area 10
+Australia(config-router)#network 201.168.1.0 0.0.0.255 Area 10
+Australia(config-router)#network 202.168.1.0 0.0.0.255 Area 10
+Australia(config-router)#
+00:53:57: %OSPF-5-ADJCHG: Process 50, Nbr 6.6.6.6 on Serial0/0/1 from LOADING to FULL, Loading Done
+
+Route RIP remove
+________________
+
+Australia#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Australia(config)#no route rip
+Australia(config)#
+
+
+
+Australia>enable
+Australia#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Australia(config)#interface loopback 50
+
+Australia(config-if)#
+%LINK-5-CHANGED: Interface Loopback50, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Loopback50, changed state to up
+
+Australia(config-if)#ip add 5.5.5.5 255.255.255.255
+Australia(config-if)#
+
+
+==================== Russian ==================================
+
+Router>enable
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#hostname Russian
+Russian(config)#interface serial 0/0/0
+Russian(config-if)#ip add 201.168.1.2 255.255.255.0
+Russian(config-if)#no shutdown
+
+Russian(config-if)#
+%LINK-5-CHANGED: Interface Serial0/0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Serial0/0/0, changed state to up
+
+Russian(config-if)#exit
+Russian(config)#interface serial 0/0/1
+Russian(config-if)#ip add 203.168.1.1 255.255.255.0
+Russian(config-if)#no shutdown
+
+Russian(config-if)#
+%LINK-5-CHANGED: Interface Serial0/0/1, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Serial0/0/1, changed state to up
+
+Russian(config-if)#exit
+Russian(config)#route rip
+Russian(config-router)#network 201.168.1.0
+Russian(config-router)#network 202.168.1.0
+Russian(config-router)#network 203.168.1.0
+Russian(config-router)#
+
+
+Russian#
+Russian#
+Russian#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Russian(config)#router ospf 60
+Russian(config-router)#router-id 6.6.6.6
+Russian(config-router)#network 201.168.1.0 0.0.0.255 Area 10
+Russian(config-router)#network 201.168.1.0 0.0.0.255 Area 10
+00:53:57: %OSPF-5-ADJCHG: Process 60, Nbr 5.5.5.5 on Serial0/0/0 from LOADING to FULL, Loading Done
+
+Russian(config-router)#network 202.168.1.0 0.0.0.255 Area 10
+Russian(config-router)#network 203.168.1.0 0.0.0.255 Area 10
+Russian(config-router)#
+00:54:10: %OSPF-5-ADJCHG: Process 60, Nbr 1.1.1.1 on Serial0/0/1 from LOADING to FULL, Loading Done
+
+
+Route RIP remove
+________________
+Russian#
+Russian#conf 
+Configuring from terminal, memory, or network [terminal]? t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Russian(config)#no route rip
+Russian(config)#
+
+Russian>enable
+Russian#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Russian(config)#interface loopback 60
+
+Russian(config-if)#
+%LINK-5-CHANGED: Interface Loopback60, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Loopback60, changed state to up
+
+Russian(config-if)#ip add 6.6.6.6 255.255.255.255
+Russian(config-if)#
+
+===========================================================================
